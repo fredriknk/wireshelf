@@ -1,18 +1,18 @@
-rod = 10;
-rod2 = 20;
-thickness = 20;
-hooks = 12;
-spacing =11;
-depth = 150;
+rod = 10; //Rod size
+rod2 = 20; //Rod clearance
+thickness = 20; //thickness of fingers
+hooks = 12; //number of hooks
+spacing =11; //extra spacing between hooks
+depth = 150;// depth center of rod to back wall
 
-laser_Gap = 0.1;
+laser_Gap = 0.1; //laser gap
 
-plate_thickness = 4;
-tab_height = 40;
-tab_space = 40;
+plate_thickness = 4; //plate thickness
+tab_height = 40; //tab length
+tab_space = 40; //tab spacing
 
-width = 350;
-edge = 40;
+width = 400; //witdh between fingerplates
+edge = 40; //border around finger plates
 
 b = width+edge*2;
 
@@ -29,6 +29,7 @@ tot_size = rod+thickness;
 total_height = (hooks)*(tot_spacing)+tot_size+tot_size;
 
 h = floor(total_height/tab_repeat)*tab_repeat+c_tab_height + edge*2;
+
 
 translate([edge,b+10,0]){
     union(){
@@ -72,8 +73,10 @@ translate([edge,b+10,0]){
             };
         };
         for ( i = [0 : floor(total_height/tab_repeat)] ){
-            translate([i*tab_repeat,0,0])
-            square([c_tab_height,plate_thickness]);
+            translate([i*tab_repeat,0,0]){
+                square([c_tab_height,plate_thickness*2]);
+           
+            };
         };
     };
 }
@@ -95,5 +98,6 @@ difference(){
         }
     
 }
+
 
 echo(height = str(h),width = str(b));
